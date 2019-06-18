@@ -7,15 +7,21 @@ namespace CityManager.Mouse {
 		[Header("Settings")]
 		public UnityEngine.Camera Camera;
 		public bool               SnapToGrid;
+		public string             RaycastLayer;
 
 		[Header("Callbacks")]
 		public UnityEvent OnConfirm;
 		public UnityEvent OnCancel;
-		
-		RaycastHit[] _hits = new RaycastHit[1];
+
+		int          _layerMask = 0;
+		RaycastHit[] _hits      = new RaycastHit[1];
 
 		void OnValidate() {
 			Assert.IsNotNull(Camera);
+		}
+
+		void Awake() {
+			_layerMask = LayerMask.GetMask(RaycastLayer);
 		}
 
 		void Update() {
@@ -25,7 +31,7 @@ namespace CityManager.Mouse {
 
 		void UpdatePosition() {
 			var mouseRay = Camera.ScreenPointToRay(Input.mousePosition);
-			var hitCount = Physics.RaycastNonAlloc(mouseRay, _hits);
+			var hitCount = Physics.RaycastNonAlloc(mouseRay, _hits, Mathf.Infinity, _layerMask);
 			if ( hitCount == 0 ) {
 				return;
 			}
