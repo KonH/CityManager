@@ -2,12 +2,13 @@
 using UnityEngine.Assertions;
 using UnityEngine.Events;
 
-namespace CityManager.Mouse {
+namespace CityManager.Utils.Mouse {
 	public class MousePlacer : MonoBehaviour {
 		[Header("Settings")]
-		public UnityEngine.Camera Camera;
-		public bool               SnapToGrid;
-		public string             RaycastLayer;
+		public Camera    Camera;
+		public bool      SnapToGrid;
+		public string    RaycastLayer;
+		public Transform Target;
 
 		[Header("Callbacks")]
 		public UnityEvent OnConfirm;
@@ -18,6 +19,7 @@ namespace CityManager.Mouse {
 
 		void OnValidate() {
 			Assert.IsNotNull(Camera);
+			Assert.IsNotNull(Target);
 		}
 
 		void Awake() {
@@ -36,7 +38,7 @@ namespace CityManager.Mouse {
 				return;
 			}
 			var hitPosition = _hits[0].point;
-			transform.position = SnapToGrid ? Snap(hitPosition) : hitPosition;
+			Target.position = SnapToGrid ? Snap(hitPosition) : hitPosition;
 		}
 
 		void UpdateState() {
@@ -58,7 +60,7 @@ namespace CityManager.Mouse {
 		}
 
 		void OnDrawGizmosSelected() {
-			Gizmos.DrawLine(Camera.transform.position, transform.position);
+			Gizmos.DrawLine(Camera.transform.position, Target.position);
 		}
 	}
 }

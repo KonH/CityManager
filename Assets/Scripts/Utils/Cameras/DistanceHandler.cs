@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CityManager.Camera {
+namespace CityManager.Utils.Cameras {
 	public class DistanceHandler : MonoBehaviour {
 		public float Speed;
 
