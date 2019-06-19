@@ -3,8 +3,9 @@ using UnityEngine.Assertions;
 
 namespace CityManager.Utils.Collisions {
 	public class CollisionState : MonoBehaviour {
-		public float      Size;
 		public string     RaycastLayer;
+		public Vector3    Size;
+		public Vector3    Offset;
 		public GameObject TriggeredBlock;
 		public GameObject NonTriggeredBlock;
 		
@@ -24,7 +25,7 @@ namespace CityManager.Utils.Collisions {
 
 		void Update() {
 			var hitCount = Physics.OverlapBoxNonAlloc(
-				transform.position, Vector3.one * Size, _hits, Quaternion.identity, _layerMask);
+				transform.position + Offset, Size, _hits, Quaternion.identity, _layerMask);
 			var isTriggered = (hitCount > 0);
 			UpdateState(isTriggered);
 		}
@@ -36,7 +37,7 @@ namespace CityManager.Utils.Collisions {
 		}
 
 		void OnDrawGizmosSelected() {
-			Gizmos.DrawCube(transform.position, Size * 2 * Vector3.one);
+			Gizmos.DrawCube(transform.position + Offset, Size * 2);
 		}
 	}
 }

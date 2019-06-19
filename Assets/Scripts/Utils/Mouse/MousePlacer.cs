@@ -5,23 +5,25 @@ using UnityEngine.Events;
 namespace CityManager.Utils.Mouse {
 	public class MousePlacer : MonoBehaviour {
 		[Header("Settings")]
-		public Camera    Camera;
 		public bool      SnapToGrid;
 		public string    RaycastLayer;
-		public Transform Target;
 
 		[Header("Callbacks")]
 		public UnityEvent OnConfirm;
 		public UnityEvent OnCancel;
 
+		Camera       _camera    = null;
+		Transform    _target    = null;
 		int          _layerMask = 0;
 		RaycastHit[] _hits      = new RaycastHit[1];
 
-		void OnValidate() {
-			Assert.IsNotNull(Camera);
-			Assert.IsNotNull(Target);
+		public void Init(Camera cam, Transform target) {
+			_camera = cam;
+			_target = target;
+			UpdatePosition();
+			UpdateState();
 		}
-
+		
 		void Awake() {
 			_layerMask = LayerMask.GetMask(RaycastLayer);
 		}
@@ -32,13 +34,13 @@ namespace CityManager.Utils.Mouse {
 		}
 
 		void UpdatePosition() {
-			var mouseRay = Camera.ScreenPointToRay(Input.mousePosition);
+			var mouseRay = _camera.ScreenPointToRay(Input.mousePosition);
 			var hitCount = Physics.RaycastNonAlloc(mouseRay, _hits, Mathf.Infinity, _layerMask);
 			if ( hitCount == 0 ) {
 				return;
 			}
 			var hitPosition = _hits[0].point;
-			Target.position = SnapToGrid ? Snap(hitPosition) : hitPosition;
+			_target.position = SnapToGrid ? Snap(hitPosition) : hitPosition;
 		}
 
 		void UpdateState() {
@@ -60,7 +62,10 @@ namespace CityManager.Utils.Mouse {
 		}
 
 		void OnDrawGizmosSelected() {
-			Gizmos.DrawLine(Camera.transform.position, Target.position);
+			if ( !Application.isPlaying ) {
+				return;
+			}
+			Gizmos.DrawLine(_camera.transform.position, _target.position);
 		}
 	}
 }
