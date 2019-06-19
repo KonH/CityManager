@@ -290,8 +290,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 288888292676086477}
-  - component: {fileID: 5779851229330142100}
   - component: {fileID: 7274988227510423854}
+  - component: {fileID: 5779851229330142100}
+  - component: {fileID: 7713426527164462409}
   m_Layer: 0
   m_Name: Placeholder_1x2
   m_TagString: Untagged
@@ -316,6 +317,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7274988227510423854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4605478939135258245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9927a47f4d44844a7821c10078a13023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parts:
+  - {fileID: 977960806178183844}
+  - {fileID: 6493262863686226817}
+  - {fileID: 9144827071810536158}
+  Placer: {fileID: 5779851229330142100}
+  Rotator: {fileID: 7713426527164462409}
 --- !u!114 &5779851229330142100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +381,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &7274988227510423854
+--- !u!114 &7713426527164462409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -371,14 +390,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4605478939135258245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9927a47f4d44844a7821c10078a13023, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cabde994ffcd4b0383d967ba71ac1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Parts:
-  - {fileID: 977960806178183844}
-  - {fileID: 6493262863686226817}
-  - {fileID: 9144827071810536158}
-  Placer: {fileID: 5779851229330142100}
 --- !u!1 &5184344289552772580
 GameObject:
   m_ObjectHideFlags: 0

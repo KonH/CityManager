@@ -3,12 +3,14 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using CityManager.Utils;
 using CityManager.Utils.Mouse;
+using CityManager.Utils.Keyboard;
 using CityManager.Utils.Collisions;
 
 namespace CityManager.Building {
 	public class BuildingPlaceholder : MonoBehaviour {
 		public CollisionState[] Parts;
 		public MousePlacer      Placer;
+		public KeyboardRotate   Rotator;
 
 		GameObject _owner;
 		GameObject _body;
@@ -16,6 +18,7 @@ namespace CityManager.Building {
 		void OnValidate() {
 			AssertExt.IsNotEmpty(Parts);
 			Assert.IsNotNull(Placer);
+			Assert.IsNotNull(Rotator);
 		}
 
 		public void Attach(GameObject owner, GameObject body) {
@@ -23,6 +26,7 @@ namespace CityManager.Building {
 			_body  = body;
 			_body.SetActive(false);
 			Placer.Init(Camera.main, owner.transform);
+			Rotator.Init(owner.transform);
 		}
 
 		public void TryPlace() {
