@@ -5,19 +5,26 @@ using CityManager.Utils.Collisions;
 
 namespace CityManager.Building {
 	public class BuildingCore : MonoBehaviour {
+		public bool             Ready;
 		public GameObject       PlaceholderRoot;
 		public CollisionState[] PlaceholderParts;
 		public GameObject       BuildingRoot;
+		public Transform        EntryPoint;
 
 		bool CanStopBuilding => PlaceholderParts.All(p => !p.Triggered);
 		
 		void OnValidate() {
 			Assert.IsNotNull(PlaceholderRoot);
 			Assert.IsNotNull(BuildingRoot);
+			Assert.IsNotNull(EntryPoint);
 		}
 
 		void Awake() {
-			StartBuilding();
+			if ( Ready ) {
+				StopBuilding();
+			} else {
+				StartBuilding();
+			}
 		}
 
 		void StartBuilding() {
