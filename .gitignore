@@ -6,3 +6,4 @@ Assets/Plugins/Editor/JetBrains
 *.sln
 *.csproj
 obj
+.DS_Store
