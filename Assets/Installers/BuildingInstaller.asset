@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a1eafa786824355bd5926e5033241f, type: 3}
+  m_Name: BuildingInstaller
+  m_EditorClassIdentifier: 
+  Buildings:
+  - {fileID: 1011200119650862874, guid: eb33a10716ab24bcb87e0818487fed12, type: 3}
+  - {fileID: 1011200119650862874, guid: f70d1d9a8dc0843daafc553262f8fc23, type: 3}
+  BuildingCategoryPanelPrefab: {fileID: 5484167686068955691, guid: f3651d3b50ca04622b05432ac84ac7be,
+    type: 3}
+  BuildingPanelPrefab: {fileID: 1588959977218803260, guid: 499fd0171e26e4f57874231269c44a3c,
+    type: 3}
