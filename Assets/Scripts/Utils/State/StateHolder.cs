@@ -1,24 +1,12 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-namespace CityManager.Utils.State {
-	public abstract class StateHolder<T> : MonoBehaviour {
-		public static HashSet<StateHolder<T>> Instances = new HashSet<StateHolder<T>>(); 
-		
-		public T Instance;
-
-		public void OnEnable() {
-			Instances.Add(this);
-		}
-
-		public void OnDisable() {
-			Instances.Remove(this);
-		}
+﻿namespace CityManager.Utils.State {
+	public abstract class StateHolder<THolder, TData> : InstancesHolder<StateHolder<THolder, TData>> where THolder : class {
+		public THolder Self => this as THolder;
+		public TData   Data;
 
 		public virtual void Refresh() {}
 
-		public virtual void Apply(T instance) {
-			Instance = instance;
+		public virtual void Apply(TData data) {
+			Data = data;
 		}
 	}
 }

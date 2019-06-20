@@ -116,7 +116,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1011200119650862875}
-  - component: {fileID: 1011200119650862876}
   - component: {fileID: 1011200119650862874}
   - component: {fileID: 3159122994031638982}
   m_Layer: 0
@@ -142,19 +141,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1011200119650862876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011200119650862877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65f6ea5d63b1047a69d54f273a509ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Live
 --- !u!114 &1011200119650862874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31827b49b227a45db96f228a8b30e0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: House
+  CategoryName: Living
+  BuildingName: House
   Placeholder: {fileID: 5130168739339640988}
   Body: {fileID: 1011200120173933520}
   EntryPoint: {fileID: 1011200119154429881}
@@ -184,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466ab1cd5f5a547ee9e2e52cb2329400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Instance:
+  Data:
     Category: 
     Name: 
     Id: 0
@@ -198,6 +185,7 @@ MonoBehaviour:
       Z: 0
       W: 0
     Units: 
+  Setup: {fileID: 1011200119650862874}
 --- !u!1 &1011200120173933520
 GameObject:
   m_ObjectHideFlags: 0

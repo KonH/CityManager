@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace CityManager.Unit {
 	public class UnitStateMachine : MonoBehaviour {
@@ -11,7 +12,13 @@ namespace CityManager.Unit {
 			public abstract void Update();
 		}
 
+		public UnitSetup Setup;
+		
 		public State CurrentState { get; private set; }
+
+		void OnValidate() {
+			Assert.IsNotNull(Setup);
+		}
 
 		public void StartState(string stateName) {
 			var type = Type.GetType(stateName);
@@ -26,7 +33,7 @@ namespace CityManager.Unit {
 
 		void EnterState() {
 			CurrentState.Owner = this;
-			CurrentState.Setup = GetComponent<UnitSetup>();
+			CurrentState.Setup = Setup;
 			CurrentState.Enter();
 		}
 		

@@ -1,13 +1,13 @@
-using System.Linq;
 using CityManager.Building;
-using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace CityManager.Unit.States {
 	public class GoToHouseState : UnitStateMachine.State {
 		public override void Enter() {
-			var wantedId = Setup.State.Instance.HouseId;
-			var house = GameObject.FindObjectsOfType<House>().First(h => h.State.Instance.Id == wantedId);
-			var target = house.GetComponentInParent<BuildingSetup>().EntryPoint;
+			var wantedId = Setup.State.Data.HouseId;
+			var house = BuildingState.FindStateById(wantedId);
+			Assert.IsNotNull(house);
+			var target = house.Setup.EntryPoint;
 			Setup.Movement.StartMoving(target, OnFinished);
 		}
 

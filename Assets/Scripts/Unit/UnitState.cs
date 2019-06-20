@@ -1,34 +1,29 @@
-using System;
+using UnityEngine.Assertions;
 using CityManager.Utils.State;
 
 namespace CityManager.Unit {
-	public class UnitState : StateHolder<UnitState.Data> {
-		[Serializable]
-		public class Data {
-			public int          Id;
-			public int          HouseId;
-			public Vec3Data     Position;
-			public RotationData Rotation;
-			public string       CurrentState;
+	public class UnitState : StateHolder<UnitState, UnitData> {
+		public UnitSetup Setup;
+
+		void OnValidate() {
+			Assert.IsNotNull(Setup);
 		}
 
 		public override void Refresh() {
 			var trans = transform;
-			Instance.Position = new Vec3Data(trans.position);
-			Instance.Rotation = new RotationData(trans.rotation);
+			Data.Position = new Vec3Data(trans.position);
+			Data.Rotation = new RotationData(trans.rotation);
 
-			var stateMachine = GetComponent<UnitStateMachine>();
-			Instance.CurrentState = stateMachine.CurrentState.GetType().FullName;
+			Data.CurrentState = Setup.StateMachine.CurrentState.GetType().FullName;
 		}
 
-		public override void Apply(Data instance) {
+		public override void Apply(UnitData instance) {
 			base.Apply(instance);
 			var trans = transform;
 			trans.position = instance.Position.ToVector3();
 			trans.rotation = instance.Rotation.ToQuaternion();
 
-			var stateMachine = GetComponent<UnitStateMachine>();
-			stateMachine.StartState(instance.CurrentState);
+			Setup.StateMachine.StartState(instance.CurrentState);
 		}
 	}
 }

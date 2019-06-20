@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 namespace CityManager.Utils.Mouse {
 	public class MousePlacer : MonoBehaviour {
 		[Header("Settings")]
-		public bool      SnapToGrid;
-		public string    RaycastLayer;
+		public bool   SnapToGrid;
+		public string RaycastLayer;
 
 		[Header("Callbacks")]
 		public UnityEvent OnConfirm;

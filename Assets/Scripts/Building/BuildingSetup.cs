@@ -4,14 +4,16 @@ using CityManager.Utils;
 
 namespace CityManager.Building {
 	public class BuildingSetup : MonoBehaviour {
-		public string              Name;
+		public string              CategoryName;
+		public string              BuildingName;
 		public BuildingPlaceholder Placeholder;
 		public GameObject          Body;
 		public Transform           EntryPoint;
 		public BuildingState       State;
 
 		void OnValidate() {
-			AssertExt.IsNotNullOrWhiteSpace(Name);
+			AssertExt.IsNotNullOrWhiteSpace(CategoryName);
+			AssertExt.IsNotNullOrWhiteSpace(BuildingName);
 			Assert.IsNotNull(Placeholder);
 			Assert.IsNotNull(Body);
 			Assert.IsNotNull(State);

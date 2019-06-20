@@ -1,4 +1,3 @@
-using UnityEngine;
 using Zenject;
 using CityManager.Building;
 
@@ -13,7 +12,7 @@ namespace CityManager.Unit {
 		}
 		
 		public void Initialize() {
-			var saveData = _stateManager.SaveData;
+			var saveData = _stateManager.Data;
 			foreach ( var unit in saveData.Units ) {
 				Prespawn(unit);
 			}
@@ -26,20 +25,20 @@ namespace CityManager.Unit {
 		}
 
 		public void AssignToHouse(UnitSetup unit, House house) {
-			var unitState  = unit.State.Instance;
-			var houseState = house.State.Instance;
+			var unitData  = unit.State.Data;
+			var houseData = house.State.Data;
 			
-			unitState.HouseId = houseState.Id;
-			houseState.Units.Add(unitState.Id);
+			unitData.HouseId = houseData.Id;
+			houseData.Units.Add(unitData.Id);
 		}
 
 		void AssignNewId(UnitState state) {
-			var data = _stateManager.SaveData.UnitData;
+			var data = _stateManager.Data.UnitData;
 			data.MaxUnitId++;
-			state.Instance.Id = data.MaxUnitId;
+			state.Data.Id = data.MaxUnitId;
 		}
 
-		void Prespawn(UnitState.Data state) {
+		void Prespawn(UnitData state) {
 			var instance = SpawnPrefab();
 			if ( !instance ) {
 				return;
@@ -49,7 +48,7 @@ namespace CityManager.Unit {
 
 		UnitSetup SpawnPrefab() {
 			var instance = _factory.Create();
-			var root = GameObject.FindObjectOfType<UnitRoot>();
+			var root = UnitRoot.Instance;
 			instance.transform.SetParent(root.transform);
 			return instance;
 		}

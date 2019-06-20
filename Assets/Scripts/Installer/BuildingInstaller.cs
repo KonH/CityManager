@@ -26,14 +26,13 @@ namespace CityManager.Installer {
 
 		BuildingSet CreateBuildingSet() {
 			var set = new BuildingSet();
-			foreach ( var building in Buildings ) {
-				var category     = building.GetComponent<BuildingCategory>();
-				var categoryName = category.Name;
+			foreach ( var setup in Buildings ) {
+				var categoryName = setup.CategoryName;
 				if ( !set.Categories.TryGetValue(categoryName, out var setups) ) {
 					setups = new List<BuildingSetup>();
 					set.Categories.Add(categoryName, setups);
 				}
-				setups.Add(building);
+				setups.Add(setup);
 			}
 			set.CategoryNames = set.Categories.Keys.ToArray();
 			return set;

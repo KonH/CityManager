@@ -1,5 +1,5 @@
-﻿using UnityEngine;
+﻿using CityManager.Utils;
 
 namespace CityManager.Unit {
-	public class UnitRoot : MonoBehaviour {}
+	public class UnitRoot : Singleton<UnitRoot> {}
 }

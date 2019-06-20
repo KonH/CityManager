@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92554b164c0144a9a75febbc4031db5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Instance:
+  Data:
     Id: 0
     HouseId: 0
     Position:
@@ -99,6 +99,7 @@ MonoBehaviour:
       Z: 0
       W: 0
     CurrentState: 
+  Setup: {fileID: 6661486784472245951}
 --- !u!114 &8471115481697335528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e4b0a408544534b1fa88f00c27c04d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Setup: {fileID: 6661486784472245951}
 --- !u!114 &1936631353491194395
 MonoBehaviour:
   m_ObjectHideFlags: 0

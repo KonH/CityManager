@@ -14,7 +14,7 @@ namespace CityManager.Building {
 		}
 		
 		public void Initialize() {
-			var saveData = _stateManager.SaveData;
+			var saveData = _stateManager.Data;
 			foreach ( var building in saveData.Buildings ) {
 				Prebuild(building);
 			}
@@ -31,9 +31,8 @@ namespace CityManager.Building {
 
 		[CanBeNull]
 		public House GetHouseWithFreePlaces() {
-			var houses = GameObject.FindObjectsOfType<House>();
-			foreach ( var house in houses ) {
-				var occupiedPlaces = house.State.Instance.Units.Count;
+			foreach ( var house in House.Instances ) {
+				var occupiedPlaces = house.State.Data.Units.Count;
 				if ( occupiedPlaces < house.Capacity ) {
 					return house;
 				}
@@ -53,12 +52,12 @@ namespace CityManager.Building {
 		}
 
 		void AssignNewId(BuildingState state) {
-			var data = _stateManager.SaveData.BuildingData;
+			var data = _stateManager.Data.BuildingData;
 			data.MaxBuildingId++;
-			state.Instance.Id = data.MaxBuildingId;
+			state.Data.Id = data.MaxBuildingId;
 		}
 
-		void Prebuild(BuildingState.Data state) {
+		void Prebuild(BuildingData state) {
 			var instance = SpawnPrefab(state.Category, state.Name);
 			if ( !instance ) {
 				return;
@@ -73,7 +72,7 @@ namespace CityManager.Building {
 			if ( !_buildingSet.Categories.TryGetValue(category, out var setups) ) {
 				return null;
 			}
-			var prefab = setups.Find(s => s.Name == buildingName);
+			var prefab = setups.Find(s => s.BuildingName == buildingName);
 			return prefab;
 		}
 
@@ -83,7 +82,7 @@ namespace CityManager.Building {
 			if ( !prefab ) {
 				return null;
 			}
-			var root = GameObject.FindObjectOfType<BuildingRoot>();
+			var root = BuildingRoot.Instance;
 			var instance = GameObject.Instantiate(prefab, root.transform);
 			return instance;
 		}
