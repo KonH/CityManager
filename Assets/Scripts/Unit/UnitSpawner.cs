@@ -1,15 +1,19 @@
 using UnityEngine;
 using Zenject;
+using CityManager.Building;
+using CityManager.Unit.States;
 
 namespace CityManager.Unit {
 	public class UnitSpawner : MonoBehaviour {
-		UnitManager _manager;
+		BuildingManager _buildingManager;
+		UnitManager     _unitManager;
 
-		float _testTimer;
-		
+		float _timer;
+
 		[Inject]
-		public void Init(UnitManager manager) {
-			_manager = manager;
+		public void Init(BuildingManager buildingManager, UnitManager unitManager) {
+			_buildingManager = buildingManager;
+			_unitManager     = unitManager;
 		}
 		
 		void Update() {
@@ -17,12 +21,18 @@ namespace CityManager.Unit {
 		}
 
 		void TrySpawn() {
-			_testTimer += Time.deltaTime;
-			if ( _testTimer < 3.0f ) {
+			if ( _timer < 1.5f ) {
+				_timer += Time.deltaTime;
 				return;
 			}
-			_testTimer = 0.0f;
-			var instance = _manager.Spawn();
+			_timer = 0.0f;
+			var house = _buildingManager.GetHouseWithFreePlaces();
+			if ( !house ) {
+				return;
+			}
+			var instance = _unitManager.Spawn();
+			_unitManager.AssignToHouse(instance, house);
+			instance.StateMachine.StartState(new GoToHouseState());
 			var instanceTrans = instance.transform;
 			var rootTrans = transform;
 			instanceTrans.position = rootTrans.position;

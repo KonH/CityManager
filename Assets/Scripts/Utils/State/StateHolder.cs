@@ -5,7 +5,7 @@ namespace CityManager.Utils.State {
 	public abstract class StateHolder<T> : MonoBehaviour {
 		public static HashSet<StateHolder<T>> Instances = new HashSet<StateHolder<T>>(); 
 		
-		public T State;
+		public T Instance;
 
 		public void OnEnable() {
 			Instances.Add(this);
@@ -17,8 +17,8 @@ namespace CityManager.Utils.State {
 
 		public virtual void Refresh() {}
 
-		public virtual void Apply(T state) {
-			State = state;
+		public virtual void Apply(T instance) {
+			Instance = instance;
 		}
 	}
 }

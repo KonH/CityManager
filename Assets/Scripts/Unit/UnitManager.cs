@@ -1,5 +1,6 @@
 using UnityEngine;
 using Zenject;
+using CityManager.Building;
 
 namespace CityManager.Unit {
 	public class UnitManager : IInitializable {
@@ -24,10 +25,18 @@ namespace CityManager.Unit {
 			return instance;
 		}
 
+		public void AssignToHouse(UnitSetup unit, House house) {
+			var unitState  = unit.State.Instance;
+			var houseState = house.State.Instance;
+			
+			unitState.HouseId = houseState.Id;
+			houseState.Units.Add(unitState.Id);
+		}
+
 		void AssignNewId(UnitState state) {
 			var data = _stateManager.SaveData.UnitData;
 			data.MaxUnitId++;
-			state.State.Id = data.MaxUnitId;
+			state.Instance.Id = data.MaxUnitId;
 		}
 
 		void Prespawn(UnitState.Data state) {

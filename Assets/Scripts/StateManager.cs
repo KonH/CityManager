@@ -42,7 +42,7 @@ namespace CityManager {
 			SaveData.Units.Clear();
 			foreach ( var instance in UnitState.Instances ) {
 				instance.Refresh();
-				SaveData.Units.Add(instance.State);
+				SaveData.Units.Add(instance.Instance);
 			}
 		}
 		
@@ -50,7 +50,7 @@ namespace CityManager {
 			SaveData.Buildings.Clear();
 			foreach ( var instance in BuildingState.Instances ) {
 				instance.Refresh();
-				SaveData.Buildings.Add(instance.State);
+				SaveData.Buildings.Add(instance.Instance);
 			}
 		}
 		

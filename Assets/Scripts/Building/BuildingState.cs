@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CityManager.Utils.State;
 
 namespace CityManager.Building {
@@ -10,22 +11,23 @@ namespace CityManager.Building {
 			public int          Id;
 			public Vec3Data     Position;
 			public RotationData Rotation;
+			public List<int>    Units;
 		}
 
 		public override void Refresh() {
-			State.Category = GetComponent<BuildingCategory>().Name;
-			State.Name     = GetComponent<BuildingSetup>().Name;
+			Instance.Category = GetComponent<BuildingCategory>().Name;
+			Instance.Name     = GetComponent<BuildingSetup>().Name;
 
 			var trans = transform;
-			State.Position = new Vec3Data(trans.position);
-			State.Rotation = new RotationData(trans.rotation);
+			Instance.Position = new Vec3Data(trans.position);
+			Instance.Rotation = new RotationData(trans.rotation);
 		}
 
-		public override void Apply(Data state) {
-			base.Apply(state);
+		public override void Apply(Data instance) {
+			base.Apply(instance);
 			var trans = transform;
-			trans.position = state.Position.ToVector3();
-			trans.rotation = state.Rotation.ToQuaternion();
+			trans.position = instance.Position.ToVector3();
+			trans.rotation = instance.Rotation.ToQuaternion();
 		}
 	}
 }

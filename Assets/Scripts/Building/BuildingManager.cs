@@ -29,6 +29,18 @@ namespace CityManager.Building {
 			instance.Placeholder.Attach(instance.transform, confirm => OnBuildingPlaced(instance, confirm));
 		}
 
+		[CanBeNull]
+		public House GetHouseWithFreePlaces() {
+			var houses = GameObject.FindObjectsOfType<House>();
+			foreach ( var house in houses ) {
+				var occupiedPlaces = house.State.Instance.Units.Count;
+				if ( occupiedPlaces < house.Capacity ) {
+					return house;
+				}
+			}
+			return null;
+		}
+
 		void OnBuildingPlaced(BuildingSetup instance, bool confirm) {
 			if ( confirm ) {
 				RemovePlaceholder(instance);
@@ -43,7 +55,7 @@ namespace CityManager.Building {
 		void AssignNewId(BuildingState state) {
 			var data = _stateManager.SaveData.BuildingData;
 			data.MaxBuildingId++;
-			state.State.Id = data.MaxBuildingId;
+			state.Instance.Id = data.MaxBuildingId;
 		}
 
 		void Prebuild(BuildingState.Data state) {

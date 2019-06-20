@@ -7,6 +7,7 @@ namespace CityManager.Building {
 		public string              Name;
 		public BuildingPlaceholder Placeholder;
 		public GameObject          Body;
+		public Transform           EntryPoint;
 		public BuildingState       State;
 
 		void OnValidate() {
