@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 1011200119650862875}
   - component: {fileID: 1011200119650862876}
   - component: {fileID: 1011200119650862874}
+  - component: {fileID: 3159122994031638982}
   m_Layer: 0
   m_Name: TestBuilding1
   m_TagString: Untagged
@@ -169,6 +170,22 @@ MonoBehaviour:
   Name: Test Building 1
   Placeholder: {fileID: 5469178687806845803}
   Body: {fileID: 1011200120173933520}
+  State: {fileID: 3159122994031638982}
+--- !u!114 &3159122994031638982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011200119650862877}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466ab1cd5f5a547ee9e2e52cb2329400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State:
+    Category: 
+    Name: 
 --- !u!1 &1011200120173933520
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +339,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Placeholder_1x2
       objectReference: {fileID: 0}
+    - target: {fileID: 5779851229330142100, guid: 9d4351caa574c430c97c4bfb0642948e,
+        type: 3}
+      propertyPath: Camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779851229330142100, guid: 9d4351caa574c430c97c4bfb0642948e,
+        type: 3}
+      propertyPath: Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 288888292676086477, guid: 9d4351caa574c430c97c4bfb0642948e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -376,16 +403,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779851229330142100, guid: 9d4351caa574c430c97c4bfb0642948e,
-        type: 3}
-      propertyPath: Camera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5779851229330142100, guid: 9d4351caa574c430c97c4bfb0642948e,
-        type: 3}
-      propertyPath: Target
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d4351caa574c430c97c4bfb0642948e, type: 3}

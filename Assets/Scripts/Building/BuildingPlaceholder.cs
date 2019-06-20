@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 using CityManager.Utils;
@@ -11,9 +12,8 @@ namespace CityManager.Building {
 		public CollisionState[] Parts;
 		public MousePlacer      Placer;
 		public KeyboardRotate   Rotator;
-
-		GameObject _owner;
-		GameObject _body;
+		
+		Action<bool> _onPlace;
 		
 		void OnValidate() {
 			AssertExt.IsNotEmpty(Parts);
@@ -21,12 +21,10 @@ namespace CityManager.Building {
 			Assert.IsNotNull(Rotator);
 		}
 
-		public void Attach(GameObject owner, GameObject body) {
-			_owner = owner;
-			_body  = body;
-			_body.SetActive(false);
-			Placer.Init(Camera.main, owner.transform);
-			Rotator.Init(owner.transform);
+		public void Attach(Transform rootTransform, Action<bool> onPlace) {
+			Placer.Init(Camera.main, rootTransform);
+			Rotator.Init(rootTransform);
+			_onPlace = onPlace;
 		}
 
 		public void TryPlace() {
@@ -37,12 +35,11 @@ namespace CityManager.Building {
 		}
 
 		public void CancelPlace() {
-			Destroy(_owner);
+			_onPlace(false);
 		}
 
 		void Place() {
-			Destroy(gameObject);
-			_body.SetActive(true);
+			_onPlace(true);
 		}
 	}
 }

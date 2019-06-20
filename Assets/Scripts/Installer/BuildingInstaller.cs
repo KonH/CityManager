@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +21,7 @@ namespace CityManager.Installer {
 			Container.BindInstance(CreateBuildingSet());
 			Container.BindFactory<BuildingCategoryPanel.Settings, BuildingCategoryPanel, BuildingCategoryPanel.Factory>().FromComponentInNewPrefab(BuildingCategoryPanelPrefab);
 			Container.BindFactory<BuildingPanel.Settings, BuildingPanel, BuildingPanel.Factory>().FromComponentInNewPrefab(BuildingPanelPrefab);
+			Container.Bind(typeof(BuildingManager), typeof(IInitializable)).To<BuildingManager>().AsSingle();
 		}
 
 		BuildingSet CreateBuildingSet() {

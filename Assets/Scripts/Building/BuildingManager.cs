@@ -1,0 +1,79 @@
+﻿using UnityEngine;
+using Zenject;
+using JetBrains.Annotations;
+using CityManager.Installer;
+
+namespace CityManager.Building {
+	public class BuildingManager : IInitializable {
+		BuildingInstaller.BuildingSet _buildingSet;
+		StateManager                  _stateManager;
+		
+		public BuildingManager(BuildingInstaller.BuildingSet buildingSet, StateManager stateManager) {
+			_buildingSet  = buildingSet;
+			_stateManager = stateManager;
+		}
+		
+		public void Initialize() {
+			var saveData = _stateManager.SaveData;
+			if ( saveData == null ) {
+				return;
+			}
+			foreach ( var building in saveData.Buildings ) {
+				Prebuild(building);
+			}
+		}
+
+		public void Build(string category, string buildingName) {
+			var instance = SpawnPrefab(category, buildingName);
+			if ( !instance ) {
+				return;
+			}
+			instance.Body.SetActive(false);
+			instance.Placeholder.Attach(instance.transform, confirm => OnBuildingPlaced(instance, confirm));
+		}
+
+		void OnBuildingPlaced(BuildingSetup instance, bool confirm) {
+			if ( confirm ) {
+				RemovePlaceholder(instance);
+				instance.Body.SetActive(true);
+				instance.State.enabled = true;
+			} else {
+				GameObject.Destroy(instance.gameObject);
+			}
+		}
+
+		void Prebuild(BuildingState.Data state) {
+			var instance = SpawnPrefab(state.Category, state.Name);
+			if ( !instance ) {
+				return;
+			}
+			RemovePlaceholder(instance);
+			instance.State.Apply(state);
+			instance.State.enabled = true;
+		}
+		
+		[CanBeNull]
+		BuildingSetup GetPrefab(string category, string buildingName) {
+			if ( !_buildingSet.Categories.TryGetValue(category, out var setups) ) {
+				return null;
+			}
+			var prefab = setups.Find(s => s.Name == buildingName);
+			return prefab;
+		}
+
+		[CanBeNull]
+		BuildingSetup SpawnPrefab(string category, string buildingName) {
+			var prefab = GetPrefab(category, buildingName);
+			if ( !prefab ) {
+				return null;
+			}
+			var instance = GameObject.Instantiate(prefab);
+			return instance;
+		}
+
+		void RemovePlaceholder(BuildingSetup instance) {
+			GameObject.Destroy(instance.Placeholder.gameObject);
+			instance.Placeholder = null;
+		}
+	}
+}

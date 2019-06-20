@@ -7,11 +7,13 @@ namespace CityManager.Building {
 		public string              Name;
 		public BuildingPlaceholder Placeholder;
 		public GameObject          Body;
+		public BuildingState       State;
 
 		void OnValidate() {
 			AssertExt.IsNotNullOrWhiteSpace(Name);
 			Assert.IsNotNull(Placeholder);
 			Assert.IsNotNull(Body);
+			Assert.IsNotNull(State);
 		}
 	}
 }
