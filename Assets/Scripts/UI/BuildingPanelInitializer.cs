@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using CityManager.Building;
 using CityManager.Installer;
 
 namespace CityManager.UI {
 	public class BuildingPanelInitializer : MonoBehaviour {
 		BuildingInstaller.BuildingSet _buildingSet;
 		BuildingPanel.Factory         _panelFactory;
-		
+		BuildingManager               _manager;
+
 		List<BuildingPanel> _panels = new List<BuildingPanel>();
 
-		string _curCategory;
-		
 		[Inject]
-		public void Init(BuildingInstaller.BuildingSet buildingSet, BuildingPanel.Factory panelFactory) {
+		public void Init(BuildingInstaller.BuildingSet buildingSet, BuildingPanel.Factory panelFactory, BuildingManager manager) {
 			_buildingSet  = buildingSet;
 			_panelFactory = panelFactory;
+			_manager      = manager;
 		}
 		
 		public void Show(string categoryName) {
-			_curCategory = categoryName;
 			HideCurrentPanels();
 			ShowForCategory(categoryName);
 		}
@@ -36,23 +36,11 @@ namespace CityManager.UI {
 				return;
 			}
 			foreach ( var setup in setups ) {
-				var settings = new BuildingPanel.Settings(setup.Name, OnClick);
+				var settings = new BuildingPanel.Settings(setup.Name, buildingName => _manager.Build(categoryName, buildingName));
 				var instance = _panelFactory.Create(settings);
 				instance.transform.SetParent(transform);
 				_panels.Add(instance);
 			}
-		}
-
-		void OnClick(string buildingName) {
-			if ( !_buildingSet.Categories.TryGetValue(_curCategory, out var setups) ) {
-				return;
-			}
-			var prefab = setups.Find(s => s.Name == buildingName);
-			if ( !prefab ) {
-				return;
-			}
-			var instance = Instantiate(prefab);
-			instance.Placeholder.Attach(instance.gameObject, instance.Body);
 		}
 	}
 }
