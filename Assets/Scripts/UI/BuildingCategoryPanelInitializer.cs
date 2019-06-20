@@ -27,7 +27,8 @@ namespace CityManager.UI {
 
 		void UpdateState() {
 			foreach ( var category in _categories ) {
-				var instance = _factory.Create(category, OnClick);
+				var settings = new BuildingCategoryPanel.Settings(category, OnClick);
+				var instance = _factory.Create(settings);
 				instance.transform.SetParent(transform, false);
 				_panels.Add(category, instance);
 			}

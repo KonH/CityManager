@@ -36,7 +36,8 @@ namespace CityManager.UI {
 				return;
 			}
 			foreach ( var setup in setups ) {
-				var instance = _panelFactory.Create(setup.Name, OnClick);
+				var settings = new BuildingPanel.Settings(setup.Name, OnClick);
+				var instance = _panelFactory.Create(settings);
 				instance.transform.SetParent(transform);
 				_panels.Add(instance);
 			}

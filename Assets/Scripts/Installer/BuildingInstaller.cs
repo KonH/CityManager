@@ -20,8 +20,8 @@ namespace CityManager.Installer {
 		
 		public override void InstallBindings() {
 			Container.BindInstance(CreateBuildingSet());
-			Container.BindFactory<string, Action<string>, BuildingCategoryPanel, BuildingCategoryPanel.Factory>().FromComponentInNewPrefab(BuildingCategoryPanelPrefab);
-			Container.BindFactory<string, Action<string>, BuildingPanel, BuildingPanel.Factory>().FromComponentInNewPrefab(BuildingPanelPrefab);
+			Container.BindFactory<BuildingCategoryPanel.Settings, BuildingCategoryPanel, BuildingCategoryPanel.Factory>().FromComponentInNewPrefab(BuildingCategoryPanelPrefab);
+			Container.BindFactory<BuildingPanel.Settings, BuildingPanel, BuildingPanel.Factory>().FromComponentInNewPrefab(BuildingPanelPrefab);
 		}
 
 		BuildingSet CreateBuildingSet() {

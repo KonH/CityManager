@@ -7,7 +7,17 @@ using Zenject;
 
 namespace CityManager.UI {
 	public class BuildingCategoryPanel : MonoBehaviour {
-		public class Factory : PlaceholderFactory<string, Action<string>, BuildingCategoryPanel> {}
+		public class Settings {
+			public readonly string         Name;
+			public readonly Action<string> OnClick;
+			
+			public Settings(string name, Action<string> onClick) {
+				Name    = name;
+				OnClick = onClick;
+			}
+		}
+		
+		public class Factory : PlaceholderFactory<Settings, BuildingCategoryPanel> {}
 
 		public Button   SelectButton;
 		public TMP_Text NameText;
@@ -18,9 +28,9 @@ namespace CityManager.UI {
 		}
 
 		[Inject]
-		public void Init(string categoryName, Action<string> onClick) {
-			NameText.text = categoryName;
-			SelectButton.onClick.AddListener(() => onClick(categoryName));
+		public void Init(Settings settings) {
+			NameText.text = settings.Name;
+			SelectButton.onClick.AddListener(() => settings.OnClick(settings.Name));
 		}
 
 		public void UpdateInteractable(bool state) {
