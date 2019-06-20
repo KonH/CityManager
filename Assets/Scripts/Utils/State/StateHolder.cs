@@ -15,7 +15,10 @@ namespace CityManager.Utils.State {
 			Instances.Remove(this);
 		}
 
-		public abstract void Refresh();
-		public abstract void Apply(T state);
+		public virtual void Refresh() {}
+
+		public virtual void Apply(T state) {
+			State = state;
+		}
 	}
 }

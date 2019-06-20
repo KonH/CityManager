@@ -7,6 +7,7 @@ namespace CityManager.Building {
 		public class Data {
 			public string       Category;
 			public string       Name;
+			public int          Id;
 			public Vec3Data     Position;
 			public RotationData Rotation;
 		}
@@ -21,6 +22,7 @@ namespace CityManager.Building {
 		}
 
 		public override void Apply(Data state) {
+			base.Apply(state);
 			var trans = transform;
 			trans.position = state.Position.ToVector3();
 			trans.rotation = state.Rotation.ToQuaternion();

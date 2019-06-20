@@ -7,7 +7,8 @@ using CityManager.Building;
 namespace CityManager {
 	public class StateManager {
 		public class Data {
-			public List<BuildingState.Data> Buildings = new List<BuildingState.Data>();
+			public BuildingData             BuildingData = new BuildingData();
+			public List<BuildingState.Data> Buildings    = new List<BuildingState.Data>();
 		}
 
 		string SavePath {
@@ -18,6 +19,7 @@ namespace CityManager {
 		
 		public void Load() {
 			if ( !File.Exists(SavePath) ) {
+				SaveData = new Data();
 				return;
 			}
 			var input = File.ReadAllText(SavePath);
@@ -26,12 +28,12 @@ namespace CityManager {
 		}
 
 		public void Save() {
-			var data = new Data();
+			SaveData.Buildings.Clear();
 			foreach ( var instance in BuildingState.Instances ) {
 				instance.Refresh();
-				data.Buildings.Add(instance.State);
+				SaveData.Buildings.Add(instance.State);
 			}
-			var output = JsonConvert.SerializeObject(data, Formatting.Indented);
+			var output = JsonConvert.SerializeObject(SaveData, Formatting.Indented);
 			Debug.Log("Saved state: \n" + output);
 			File.WriteAllText(SavePath, output);
 		}

@@ -15,9 +15,6 @@ namespace CityManager.Building {
 		
 		public void Initialize() {
 			var saveData = _stateManager.SaveData;
-			if ( saveData == null ) {
-				return;
-			}
 			foreach ( var building in saveData.Buildings ) {
 				Prebuild(building);
 			}
@@ -36,10 +33,17 @@ namespace CityManager.Building {
 			if ( confirm ) {
 				RemovePlaceholder(instance);
 				instance.Body.SetActive(true);
+				AssignNewId(instance.State);
 				instance.State.enabled = true;
 			} else {
 				GameObject.Destroy(instance.gameObject);
 			}
+		}
+
+		void AssignNewId(BuildingState state) {
+			var data = _stateManager.SaveData.BuildingData;
+			data.MaxBuildingId++;
+			state.State.Id = data.MaxBuildingId;
 		}
 
 		void Prebuild(BuildingState.Data state) {
