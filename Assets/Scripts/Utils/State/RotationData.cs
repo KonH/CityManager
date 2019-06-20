@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace CityManager.Utils.State {
+	[Serializable]
 	public struct RotationData {
 		public float X;
 		public float Y;

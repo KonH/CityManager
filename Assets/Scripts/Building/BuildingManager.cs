@@ -71,7 +71,8 @@ namespace CityManager.Building {
 			if ( !prefab ) {
 				return null;
 			}
-			var instance = GameObject.Instantiate(prefab);
+			var root = GameObject.FindObjectOfType<BuildingRoot>();
+			var instance = GameObject.Instantiate(prefab, root.transform);
 			return instance;
 		}
 
