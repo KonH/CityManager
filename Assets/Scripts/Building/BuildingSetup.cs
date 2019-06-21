@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.Assertions;
 using CityManager.Utils;
+using UnityEngine.Assertions;
 
 namespace CityManager.Building {
 	public class BuildingSetup : MonoBehaviour {
@@ -13,6 +13,7 @@ namespace CityManager.Building {
 		public Producer            Producer;
 		public Consumer            Consumer;
 		public Storage             Storage;
+		public WorkPlace           WorkPlace;
 
 		void OnValidate() {
 			AssertExt.IsNotNullOrWhiteSpace(CategoryName);

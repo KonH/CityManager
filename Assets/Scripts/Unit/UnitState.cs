@@ -1,4 +1,5 @@
 using UnityEngine.Assertions;
+using JetBrains.Annotations;
 using CityManager.Utils.State;
 
 namespace CityManager.Unit {
@@ -24,6 +25,17 @@ namespace CityManager.Unit {
 			trans.rotation = instance.Rotation.ToQuaternion();
 
 			Setup.StateMachine.StartState(instance.CurrentState);
+		}
+		
+		[CanBeNull]
+		public static UnitSetup TryGetNonWorkingUnit() {
+			foreach ( var instance in UnitState.Instances ) {
+				if ( instance.Data.WorkPlaceId > 0 ) {
+					continue;
+				}
+				return instance.Self.Setup;
+			}
+			return null;
 		}
 	}
 }
