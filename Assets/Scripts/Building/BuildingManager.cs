@@ -32,8 +32,7 @@ namespace CityManager.Building {
 		[CanBeNull]
 		public House GetHouseWithFreePlaces() {
 			foreach ( var house in House.Instances ) {
-				var occupiedPlaces = house.State.Data.Units.Count;
-				if ( occupiedPlaces < house.Capacity ) {
+				if ( house.HasFreePlaces ) {
 					return house;
 				}
 			}

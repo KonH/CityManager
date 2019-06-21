@@ -10,6 +10,9 @@ namespace CityManager.Building {
 		public GameObject          Body;
 		public Transform           EntryPoint;
 		public BuildingState       State;
+		public Producer            Producer;
+		public Consumer            Consumer;
+		public Storage             Storage;
 
 		void OnValidate() {
 			AssertExt.IsNotNullOrWhiteSpace(CategoryName);

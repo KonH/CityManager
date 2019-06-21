@@ -31,7 +31,7 @@ namespace CityManager.Unit {
 				return;
 			}
 			var instance = _unitManager.Spawn();
-			_unitManager.AssignToHouse(instance, house);
+			house.AddUnit(instance);
 			instance.StateMachine.StartState(new GoToHouseState());
 			var instanceTrans = instance.transform;
 			var rootTrans = transform;

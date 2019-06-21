@@ -1,5 +1,4 @@
 using Zenject;
-using CityManager.Building;
 
 namespace CityManager.Unit {
 	public class UnitManager : IInitializable {
@@ -22,14 +21,6 @@ namespace CityManager.Unit {
 			var instance = SpawnPrefab();
 			AssignNewId(instance.State);
 			return instance;
-		}
-
-		public void AssignToHouse(UnitSetup unit, House house) {
-			var unitData  = unit.State.Data;
-			var houseData = house.State.Data;
-			
-			unitData.HouseId = houseData.Id;
-			houseData.Units.Add(unitData.Id);
 		}
 
 		void AssignNewId(UnitState state) {
