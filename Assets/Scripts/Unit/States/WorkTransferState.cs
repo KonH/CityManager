@@ -16,7 +16,7 @@ namespace CityManager.Unit.States {
 		}
 
 		void OnFinished() {
-			Setup.State.Data.Inventory = string.Empty;
+			Setup.SetInventory(string.Empty);
 			_consumer.Setup.Storage.AddResource(_wantedResource, 1);
 			Owner.StartState(new IdleState());
 		}
