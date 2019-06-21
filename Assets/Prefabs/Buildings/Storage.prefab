@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 1011200119650862874}
   - component: {fileID: 3159122994031638982}
   m_Layer: 0
-  m_Name: GoldMine
+  m_Name: Storage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,16 +153,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31827b49b227a45db96f228a8b30e0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CategoryName: Resource
-  BuildingName: Gold Mine
+  CategoryName: Economy
+  BuildingName: Storage
   Placeholder: {fileID: 5130168739339640988}
   Body: {fileID: 1011200120173933520}
   EntryPoint: {fileID: 1011200119154429881}
   State: {fileID: 3159122994031638982}
-  Producer: {fileID: 785354613967803889}
-  Consumer: {fileID: 0}
+  Producer: {fileID: 0}
+  Consumer: {fileID: 3132412984313372991}
   Storage: {fileID: 6036234246511817036}
-  WorkPlace: {fileID: 6506859028072508631}
+  WorkPlace: {fileID: 0}
 --- !u!114 &3159122994031638982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,8 +202,7 @@ GameObject:
   - component: {fileID: 1011200120173933534}
   - component: {fileID: 1011200120173933535}
   - component: {fileID: 6036234246511817036}
-  - component: {fileID: 785354613967803889}
-  - component: {fileID: 6506859028072508631}
+  - component: {fileID: 3132412984313372991}
   m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
@@ -269,8 +268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Setup: {fileID: 1011200119650862874}
-  Capacity: 100
---- !u!114 &785354613967803889
+  Capacity: 1000
+--- !u!114 &3132412984313372991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,25 +278,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1011200120173933520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7793d107e24bab84fd0d11e2342a7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e676405798a4a17a328edd7e2b9a6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Setup: {fileID: 1011200119650862874}
-  Resource: GoldOre
---- !u!114 &6506859028072508631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011200120173933520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bfb053927e74147bca058bed7f6336a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Setup: {fileID: 1011200119650862874}
-  Capacity: 4
+  Resources:
+  - GoldBar
 --- !u!1001 &2578300299295814066
 PrefabInstance:
   m_ObjectHideFlags: 0

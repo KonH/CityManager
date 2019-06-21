@@ -162,6 +162,7 @@ MonoBehaviour:
   Producer: {fileID: 0}
   Consumer: {fileID: 0}
   Storage: {fileID: 0}
+  WorkPlace: {fileID: 0}
 --- !u!114 &3159122994031638982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Setup: {fileID: 1011200119650862874}
-  Capacity: 3
+  Capacity: 8
 --- !u!1001 &2578300299295814066
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,17 +12,7 @@ namespace CityManager.Building {
 			AssertExt.IsNotNullOrWhiteSpace(Resource);
 		}
 
-		void Update() {
-			if ( TryConsume() ) {
-				Produce();
-			}
-		}
-
-		bool TryConsume() {
-			var storage = Setup.Storage;
-			if ( !storage.HasFreeSpace ) {
-				return false;
-			}
+		public bool TryConsume() {
 			var consumer = Setup.Consumer;
 			if ( !consumer ) {
 				return true;
@@ -30,7 +20,7 @@ namespace CityManager.Building {
 			return consumer.TryConsume();
 		}
 
-		void Produce() {
+		public void Produce() {
 			var storage = Setup.Storage;
 			if ( !storage ) {
 				return;

@@ -11,8 +11,6 @@ namespace CityManager.Unit.States {
 			Setup.Movement.StartMoving(target, OnFinished);
 		}
 
-		public override void Update() {}
-
 		void OnFinished() {
 			Owner.StartState(new IdleState());
 		}

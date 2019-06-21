@@ -17,5 +17,10 @@ namespace CityManager.Unit {
 			Assert.IsNotNull(Movement);
 			Assert.IsNotNull(Render);
 		}
+
+		public void SetVisible(bool state) {
+			Render.SetActive(state);
+			Movement.Agent.enabled = state;
+		}
 	}
 }

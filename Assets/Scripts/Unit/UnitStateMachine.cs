@@ -8,8 +8,9 @@ namespace CityManager.Unit {
 			public UnitSetup        Setup;
 			public UnitStateMachine Owner;
 			
-			public abstract void Enter();
-			public abstract void Update();
+			public virtual void Enter() {}
+			public virtual void Update() {}
+			public virtual void Exit() {}
 		}
 
 		public UnitSetup Setup;
@@ -22,16 +23,17 @@ namespace CityManager.Unit {
 
 		public void StartState(string stateName) {
 			var type = Type.GetType(stateName);
-			CurrentState = Activator.CreateInstance(type) as State;
-			EnterState();
+			var state = Activator.CreateInstance(type) as State;
+			EnterState(state);
 		}
 
 		public void StartState(State state) {
-			CurrentState = state;
-			EnterState();
+			CurrentState?.Exit();
+			EnterState(state);
 		}
 
-		void EnterState() {
+		void EnterState(State newState) {
+			CurrentState = newState;
 			CurrentState.Owner = this;
 			CurrentState.Setup = Setup;
 			CurrentState.Enter();

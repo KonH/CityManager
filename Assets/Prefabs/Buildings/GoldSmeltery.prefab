@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Setup: {fileID: 1011200119650862874}
-  Capacity: 3
+  Capacity: 25
 --- !u!114 &3132412984313372991
 MonoBehaviour:
   m_ObjectHideFlags: 0
