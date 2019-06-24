@@ -6,10 +6,12 @@ namespace CityManager.Building {
 	public class Producer : MonoBehaviour {
 		public BuildingSetup Setup;
 		public string        Resource;
+		public float         ProduceTime;
 
 		void OnValidate() {
 			Assert.IsNotNull(Setup);
 			AssertExt.IsNotNullOrWhiteSpace(Resource);
+			Assert.IsTrue(ProduceTime > 0);
 		}
 
 		public bool TryConsume() {

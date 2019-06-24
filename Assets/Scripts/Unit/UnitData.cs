@@ -10,6 +10,7 @@ namespace CityManager.Unit {
 		public Vec3Data     Position;
 		public RotationData Rotation;
 		public string       CurrentState;
+		public float        StateProgress;
 		public string       Inventory;
 	}
 }

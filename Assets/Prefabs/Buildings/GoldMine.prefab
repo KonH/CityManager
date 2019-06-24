@@ -284,6 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Setup: {fileID: 1011200119650862874}
   Resource: GoldOre
+  ProduceTime: 10
 --- !u!114 &6506859028072508631
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,9 @@ namespace CityManager.Unit {
 			Data.Position = new Vec3Data(trans.position);
 			Data.Rotation = new RotationData(trans.rotation);
 
-			Data.CurrentState = Setup.StateMachine.CurrentState.GetType().FullName;
+			var curState = Setup.StateMachine.CurrentState;
+			Data.CurrentState  = curState.GetType().FullName;
+			Data.StateProgress = curState.Progress;
 		}
 
 		public override void Apply(UnitData instance) {
@@ -24,12 +26,12 @@ namespace CityManager.Unit {
 			trans.position = instance.Position.ToVector3();
 			trans.rotation = instance.Rotation.ToQuaternion();
 
-			Setup.StateMachine.StartState(instance.CurrentState);
+			Setup.StateMachine.StartState(instance.CurrentState, instance.StateProgress);
 		}
 		
 		[CanBeNull]
 		public static UnitSetup TryGetNonWorkingUnit() {
-			foreach ( var instance in UnitState.Instances ) {
+			foreach ( var instance in Instances ) {
 				if ( instance.Data.WorkPlaceId > 0 ) {
 					continue;
 				}

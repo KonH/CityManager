@@ -4,7 +4,7 @@ namespace CityManager.Unit.States {
 			Setup.SetVisible(false);
 		}
 
-		public override void Update() {
+		public override void Update(float _) {
 			if ( Setup.State.Data.WorkPlaceId > 0 ) {
 				Owner.StartState(new GoToWorkState());
 			}

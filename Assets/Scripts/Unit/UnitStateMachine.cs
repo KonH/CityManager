@@ -7,9 +7,10 @@ namespace CityManager.Unit {
 		public abstract class State {
 			public UnitSetup        Setup;
 			public UnitStateMachine Owner;
+			public float            Progress;
 			
 			public virtual void Enter() {}
-			public virtual void Update() {}
+			public virtual void Update(float dt) {}
 			public virtual void Exit() {}
 		}
 
@@ -21,26 +22,27 @@ namespace CityManager.Unit {
 			Assert.IsNotNull(Setup);
 		}
 
-		public void StartState(string stateName) {
+		public void StartState(string stateName, float progress) {
 			var type = Type.GetType(stateName);
 			var state = Activator.CreateInstance(type) as State;
-			EnterState(state);
+			EnterState(state, progress);
 		}
 
-		public void StartState(State state) {
+		public void StartState(State state, float progress = 0.0f) {
 			CurrentState?.Exit();
-			EnterState(state);
+			EnterState(state, progress);
 		}
 
-		void EnterState(State newState) {
+		void EnterState(State newState, float progress) {
 			CurrentState = newState;
 			CurrentState.Owner = this;
 			CurrentState.Setup = Setup;
+			CurrentState.Progress = progress;
 			CurrentState.Enter();
 		}
 		
 		public void Update() {
-			CurrentState.Update();
+			CurrentState.Update(Time.deltaTime);
 		}
 	}
 }

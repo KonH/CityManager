@@ -300,6 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Setup: {fileID: 1011200119650862874}
   Resource: GoldBar
+  ProduceTime: 15
 --- !u!114 &1053455510535911237
 MonoBehaviour:
   m_ObjectHideFlags: 0

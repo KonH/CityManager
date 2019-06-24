@@ -15,7 +15,7 @@ namespace CityManager.Unit.States {
 			_producer = setup.Producer;
 		}
 
-		public override void Update() {
+		public override void Update(float _) {
 			var wantedResource = _producer.Resource;
 			if ( Consumer.HasFreeInstancesFor(wantedResource) && _storage.TryGetResource(wantedResource, 1) ) {
 				Setup.SetInventory(wantedResource);
