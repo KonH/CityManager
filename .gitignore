@@ -7,3 +7,4 @@ Assets/Plugins/Editor/JetBrains
 *.csproj
 obj
 .DS_Store
+Assets/Plugins/Editor/JetBrains.meta
