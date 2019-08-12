@@ -22,12 +22,13 @@ namespace CityManager.Building {
 		}
 
 		public void Attach(Transform rootTransform, Action<bool> onPlace) {
+			_onPlace = onPlace;
 			Placer.Init(Camera.main, rootTransform);
 			Rotator.Init(rootTransform);
-			_onPlace = onPlace;
 		}
 
 		public void TryPlace() {
+			Assert.IsNotNull(_onPlace);
 			var canPlace = Parts.All(p => !p.Triggered);
 			if ( canPlace ) {
 				Place();
