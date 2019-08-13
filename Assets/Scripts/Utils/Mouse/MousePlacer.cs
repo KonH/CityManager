@@ -22,7 +22,7 @@ namespace CityManager.Utils.Mouse {
 			UpdatePosition();
 			UpdateState();
 		}
-		
+
 		void Awake() {
 			_layerMask = LayerMask.GetMask(RaycastLayer);
 		}

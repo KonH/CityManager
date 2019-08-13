@@ -22,12 +22,12 @@ namespace CityManager.Building {
 		public bool HasFreeSpace => FreeSpace > 0;
 
 		Dictionary<string, int> Resources => Setup.State.Data.Resources;
-		
+
 		void OnValidate() {
 			Assert.IsNotNull(Setup);
 			Assert.IsTrue(Capacity > 0);
 		}
-		
+
 		public bool AddResource(string resource, int amount) {
 			if ( !HasFreeSpace ) {
 				return false;
@@ -41,7 +41,7 @@ namespace CityManager.Building {
 		public bool HasResource(string resource, int amount) {
 			return Resources.TryGetValue(resource, out var count) && (count >= amount);
 		}
-		
+
 		public bool TryGetResource(string resource, int amount) {
 			if ( !Resources.TryGetValue(resource, out var count) ) {
 				return false;

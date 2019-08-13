@@ -12,9 +12,9 @@ namespace CityManager.Building {
 		public CollisionState[] Parts;
 		public MousePlacer      Placer;
 		public KeyboardRotate   Rotator;
-		
+
 		Action<bool> _onPlace;
-		
+
 		void OnValidate() {
 			AssertExt.IsNotEmpty(Parts);
 			Assert.IsNotNull(Placer);

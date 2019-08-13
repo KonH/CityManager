@@ -8,7 +8,7 @@ namespace CityManager.Utils.Collisions {
 		public Vector3    Offset;
 		public GameObject TriggeredBlock;
 		public GameObject NonTriggeredBlock;
-		
+
 		public bool Triggered { get; private set; }
 
 		int        _layerMask = 0;

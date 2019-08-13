@@ -28,7 +28,7 @@ namespace CityManager.Unit {
 
 			Setup.StateMachine.StartState(instance.CurrentState, instance.StateProgress);
 		}
-		
+
 		[CanBeNull]
 		public static UnitSetup TryGetNonWorkingUnit() {
 			foreach ( var instance in Instances ) {

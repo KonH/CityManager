@@ -13,16 +13,16 @@ namespace CityManager.Building {
 				return (occupiedPlaces < Capacity);
 			}
 		}
-		
+
 		void OnValidate() {
 			Assert.IsNotNull(Setup);
 			Assert.IsTrue(Capacity > 0);
 		}
-		
+
 		public void AddUnit(UnitSetup unit) {
 			var unitData  = unit.State.Data;
 			var houseData = Setup.State.Data;
-			
+
 			unitData.HouseId = houseData.Id;
 			houseData.Units.Add(unitData.Id);
 		}

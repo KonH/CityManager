@@ -3,7 +3,7 @@
 namespace CityManager.Utils.Keyboard {
 	public class KeyboardRotate : MonoBehaviour {
 		Transform _target;
-		
+
 		public void Init(Transform target) {
 			_target = target;
 		}

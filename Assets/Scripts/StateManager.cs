@@ -13,7 +13,7 @@ namespace CityManager {
 		}
 
 		public StateData Data { get; private set; }
-		
+
 		public void Load() {
 			if ( !File.Exists(SavePath) ) {
 				Data = new StateData();
@@ -31,7 +31,7 @@ namespace CityManager {
 			Debug.Log("Saved state: \n" + output);
 			File.WriteAllText(SavePath, output);
 		}
-		
+
 		public void Delete() {
 			if ( !File.Exists(SavePath) ) {
 				return;

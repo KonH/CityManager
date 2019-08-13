@@ -15,7 +15,7 @@ namespace CityManager.Unit {
 			_buildingManager = buildingManager;
 			_unitManager     = unitManager;
 		}
-		
+
 		void Update() {
 			TrySpawn();
 		}

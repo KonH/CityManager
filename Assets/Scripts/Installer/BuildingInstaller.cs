@@ -12,11 +12,11 @@ namespace CityManager.Installer {
 			public Dictionary<string, List<BuildingSetup>> Categories    = new Dictionary<string, List<BuildingSetup>>();
 			public string[]                                CategoryNames = null;
 		}
-		
+
 		public BuildingSetup[]       Buildings;
 		public BuildingCategoryPanel BuildingCategoryPanelPrefab;
 		public BuildingPanel         BuildingPanelPrefab;
-		
+
 		public override void InstallBindings() {
 			Container.BindInstance(CreateBuildingSet());
 			Container.BindFactory<BuildingCategoryPanel.Settings, BuildingCategoryPanel, BuildingCategoryPanel.Factory>().FromComponentInNewPrefab(BuildingCategoryPanelPrefab);

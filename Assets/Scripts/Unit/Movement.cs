@@ -8,7 +8,7 @@ namespace CityManager.Unit {
 		public NavMeshAgent Agent;
 
 		Action _callback;
-		
+
 		void OnValidate() {
 			Assert.IsNotNull(Agent);
 		}

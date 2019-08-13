@@ -4,12 +4,12 @@ namespace CityManager.Unit {
 	public class UnitManager : IInitializable {
 		readonly UnitSetup.Factory _factory;
 		readonly StateManager      _stateManager;
-		
+
 		public UnitManager(UnitSetup.Factory factory, StateManager stateManager) {
 			_factory      = factory;
 			_stateManager = stateManager;
 		}
-		
+
 		public void Initialize() {
 			var saveData = _stateManager.Data;
 			foreach ( var unit in saveData.Units ) {

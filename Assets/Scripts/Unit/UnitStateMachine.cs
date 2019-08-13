@@ -8,14 +8,14 @@ namespace CityManager.Unit {
 			public UnitSetup        Setup;
 			public UnitStateMachine Owner;
 			public float            Progress;
-			
+
 			public virtual void Enter() {}
 			public virtual void Update(float dt) {}
 			public virtual void Exit() {}
 		}
 
 		public UnitSetup Setup;
-		
+
 		public State CurrentState { get; private set; }
 
 		void OnValidate() {
@@ -41,7 +41,7 @@ namespace CityManager.Unit {
 			CurrentState.Progress = progress;
 			CurrentState.Enter();
 		}
-		
+
 		public void Update() {
 			CurrentState.Update(Time.deltaTime);
 		}

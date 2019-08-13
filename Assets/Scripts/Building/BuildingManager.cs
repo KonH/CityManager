@@ -7,12 +7,12 @@ namespace CityManager.Building {
 	public class BuildingManager : IInitializable {
 		readonly BuildingInstaller.BuildingSet _buildingSet;
 		readonly StateManager                  _stateManager;
-		
+
 		public BuildingManager(BuildingInstaller.BuildingSet buildingSet, StateManager stateManager) {
 			_buildingSet  = buildingSet;
 			_stateManager = stateManager;
 		}
-		
+
 		public void Initialize() {
 			var saveData = _stateManager.Data;
 			foreach ( var building in saveData.Buildings ) {
@@ -65,7 +65,7 @@ namespace CityManager.Building {
 			instance.State.Apply(state);
 			instance.State.enabled = true;
 		}
-		
+
 		[CanBeNull]
 		BuildingSetup GetPrefab(string category, string buildingName) {
 			if ( !_buildingSet.Categories.TryGetValue(category, out var setups) ) {

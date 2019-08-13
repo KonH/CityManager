@@ -8,7 +8,7 @@ namespace CityManager.Utils.State {
 		public float Y;
 		public float Z;
 		public float W;
-		
+
 		public RotationData(Quaternion rotation) {
 			X = rotation.x;
 			Y = rotation.y;

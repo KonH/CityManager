@@ -13,7 +13,7 @@ namespace CityManager.Utils.State {
 		public virtual void Apply(TData data) {
 			Data = data;
 		}
-		
+
 	#if UNITY_EDITOR
 		void OnDrawGizmosSelected() {
 			var json = JsonConvert.SerializeObject(Data, Formatting.Indented);

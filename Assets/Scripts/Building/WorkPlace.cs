@@ -8,7 +8,7 @@ namespace CityManager.Building {
 		public int           Capacity;
 
 		public bool HasFreeSpace => Setup.State.Data.Units.Count < Capacity;
-		
+
 		void OnValidate() {
 			Assert.IsNotNull(Setup);
 			Assert.IsTrue(Capacity > 0);
@@ -22,10 +22,10 @@ namespace CityManager.Building {
 			if ( !unit ) {
 				return;
 			}
-			
+
 			var unitData  = unit.State.Data;
 			var placeData = Setup.State.Data;
-			
+
 			unitData.WorkPlaceId = placeData.Id;
 			placeData.Units.Add(unitData.Id);
 		}
