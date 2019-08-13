@@ -5,8 +5,8 @@ using CityManager.Installer;
 
 namespace CityManager.Building {
 	public class BuildingManager : IInitializable {
-		BuildingInstaller.BuildingSet _buildingSet;
-		StateManager                  _stateManager;
+		readonly BuildingInstaller.BuildingSet _buildingSet;
+		readonly StateManager                  _stateManager;
 		
 		public BuildingManager(BuildingInstaller.BuildingSet buildingSet, StateManager stateManager) {
 			_buildingSet  = buildingSet;

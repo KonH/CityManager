@@ -2,8 +2,8 @@ using Zenject;
 
 namespace CityManager.Unit {
 	public class UnitManager : IInitializable {
-		UnitSetup.Factory _factory;
-		StateManager      _stateManager;
+		readonly UnitSetup.Factory _factory;
+		readonly StateManager      _stateManager;
 		
 		public UnitManager(UnitSetup.Factory factory, StateManager stateManager) {
 			_factory      = factory;

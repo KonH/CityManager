@@ -13,7 +13,6 @@ namespace CityManager.Building {
 		public Producer            Producer;
 		public Consumer            Consumer;
 		public Storage             Storage;
-		public WorkPlace           WorkPlace;
 
 		void OnValidate() {
 			AssertExt.IsNotNullOrWhiteSpace(CategoryName);

@@ -24,6 +24,7 @@ namespace CityManager.Unit {
 
 		public void StartState(string stateName, float progress) {
 			var type = Type.GetType(stateName);
+			Assert.IsNotNull(type);
 			var state = Activator.CreateInstance(type) as State;
 			EnterState(state, progress);
 		}
