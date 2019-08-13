@@ -7,16 +7,20 @@ namespace CityManager.Building {
 		public BuildingSetup Setup;
 		public int           Capacity;
 
-		public bool HasFreeSpace {
+		public int OccupiedSpace {
 			get {
 				var occupiedSpace = 0;
 				foreach ( var pair in Resources ) {
 					occupiedSpace += pair.Value;
 				}
-				return occupiedSpace < Capacity;
+				return occupiedSpace;
 			}
 		}
-		
+
+		public int FreeSpace => Capacity - OccupiedSpace;
+
+		public bool HasFreeSpace => FreeSpace > 0;
+
 		Dictionary<string, int> Resources => Setup.State.Data.Resources;
 		
 		void OnValidate() {
@@ -29,7 +33,8 @@ namespace CityManager.Building {
 				return false;
 			}
 			Resources.TryGetValue(resource, out var count);
-			Resources[resource] = count + amount;
+			var actualAmount = Mathf.Min(amount, FreeSpace);
+			Resources[resource] = count + actualAmount;
 			return true;
 		}
 
