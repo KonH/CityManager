@@ -39,6 +39,7 @@ namespace CityManager.UI {
 				var settings = new BuildingPanel.Settings(setup.State.BuildingName, buildingName => _manager.Build(categoryName, buildingName));
 				var instance = _panelFactory.Create(settings);
 				instance.transform.SetParent(transform);
+				instance.transform.localScale = Vector3.one;
 				_panels.Add(instance);
 			}
 		}
