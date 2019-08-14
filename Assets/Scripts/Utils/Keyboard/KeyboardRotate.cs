@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace CityManager.Utils.Keyboard {
-	public class KeyboardRotate : MonoBehaviour {
+	public sealed class KeyboardRotate : MonoBehaviour {
 		Transform _target;
 
 		public void Init(Transform target) {

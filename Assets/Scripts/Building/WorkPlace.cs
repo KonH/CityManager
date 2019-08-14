@@ -3,7 +3,7 @@ using CityManager.Unit;
 using CityManager.Utils;
 
 namespace CityManager.Building {
-	public class WorkPlace : InstancesHolder<WorkPlace> {
+	public sealed class WorkPlace : InstancesHolder<WorkPlace> {
 		public BuildingSetup Setup;
 		public int           Capacity;
 

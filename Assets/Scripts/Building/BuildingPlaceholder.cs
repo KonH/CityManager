@@ -8,10 +8,10 @@ using CityManager.Utils.Keyboard;
 using CityManager.Utils.Collisions;
 
 namespace CityManager.Building {
-	public class BuildingPlaceholder : MonoBehaviour {
-		public CollisionState[] Parts;
-		public MousePlacer      Placer;
-		public KeyboardRotate   Rotator;
+	public sealed class BuildingPlaceholder : MonoBehaviour {
+		[SerializeField] CollisionState[] Parts   = null;
+		[SerializeField] MousePlacer      Placer  = null;
+		[SerializeField] KeyboardRotate   Rotator = null;
 
 		Action<bool> _onPlace;
 

@@ -5,7 +5,7 @@ using CityManager.Building;
 using CityManager.Installer;
 
 namespace CityManager.UI {
-	public class BuildingPanelInitializer : MonoBehaviour {
+	public sealed class BuildingPanelInitializer : MonoBehaviour {
 		BuildingInstaller.BuildingSet _buildingSet;
 		BuildingPanel.Factory         _panelFactory;
 		BuildingManager               _manager;
@@ -18,7 +18,7 @@ namespace CityManager.UI {
 			_panelFactory = panelFactory;
 			_manager      = manager;
 		}
-		
+
 		public void Show(string categoryName) {
 			HideCurrentPanels();
 			ShowForCategory(categoryName);
@@ -36,7 +36,7 @@ namespace CityManager.UI {
 				return;
 			}
 			foreach ( var setup in setups ) {
-				var settings = new BuildingPanel.Settings(setup.BuildingName, buildingName => _manager.Build(categoryName, buildingName));
+				var settings = new BuildingPanel.Settings(setup.State.BuildingName, buildingName => _manager.Build(categoryName, buildingName));
 				var instance = _panelFactory.Create(settings);
 				instance.transform.SetParent(transform);
 				_panels.Add(instance);

@@ -2,12 +2,12 @@
 using UnityEngine.Assertions;
 
 namespace CityManager.Utils.Collisions {
-	public class CollisionState : MonoBehaviour {
-		public string     RaycastLayer;
-		public Vector3    Size;
-		public Vector3    Offset;
-		public GameObject TriggeredBlock;
-		public GameObject NonTriggeredBlock;
+	public sealed class CollisionState : MonoBehaviour {
+		[SerializeField] string     RaycastLayer      = null;
+		[SerializeField] Vector3    Size              = default;
+		[SerializeField] Vector3    Offset            = default;
+		[SerializeField] GameObject TriggeredBlock    = null;
+		[SerializeField] GameObject NonTriggeredBlock = null;
 
 		public bool Triggered { get; private set; }
 

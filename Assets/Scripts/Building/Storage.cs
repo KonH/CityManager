@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace CityManager.Building {
-	public class Storage : MonoBehaviour {
-		public BuildingSetup Setup;
-		public int           Capacity;
+	public sealed class Storage : MonoBehaviour {
+		[NonSerialized]
+		public BuildingSetup Owner = null;
+
+		[SerializeField] int Capacity = 0;
 
 		public int OccupiedSpace {
 			get {
@@ -21,10 +24,9 @@ namespace CityManager.Building {
 
 		public bool HasFreeSpace => FreeSpace > 0;
 
-		Dictionary<string, int> Resources => Setup.State.Data.Resources;
+		Dictionary<string, int> Resources => Owner.State.Data.Resources;
 
 		void OnValidate() {
-			Assert.IsNotNull(Setup);
 			Assert.IsTrue(Capacity > 0);
 		}
 

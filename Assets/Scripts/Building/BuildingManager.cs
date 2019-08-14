@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 using CityManager.Installer;
 
 namespace CityManager.Building {
-	public class BuildingManager : IInitializable {
+	public sealed class BuildingManager : IInitializable {
 		readonly BuildingInstaller.BuildingSet _buildingSet;
 		readonly StateManager                  _stateManager;
 
@@ -71,7 +71,7 @@ namespace CityManager.Building {
 			if ( !_buildingSet.Categories.TryGetValue(category, out var setups) ) {
 				return null;
 			}
-			var prefab = setups.Find(s => s.BuildingName == buildingName);
+			var prefab = setups.Find(s => s.State.BuildingName == buildingName);
 			return prefab;
 		}
 

@@ -1,5 +1,5 @@
 namespace CityManager.Unit.States {
-	public class IdleState : UnitStateMachine.State {
+	public sealed class IdleState : UnitStateMachine.State {
 		public override void Enter() {
 			Setup.SetVisible(false);
 		}

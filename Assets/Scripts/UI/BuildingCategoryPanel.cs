@@ -6,21 +6,21 @@ using TMPro;
 using Zenject;
 
 namespace CityManager.UI {
-	public class BuildingCategoryPanel : MonoBehaviour {
-		public class Settings {
+	public sealed class BuildingCategoryPanel : MonoBehaviour {
+		public sealed class Settings {
 			public readonly string         Name;
 			public readonly Action<string> OnClick;
-			
+
 			public Settings(string name, Action<string> onClick) {
 				Name    = name;
 				OnClick = onClick;
 			}
 		}
-		
-		public class Factory : PlaceholderFactory<Settings, BuildingCategoryPanel> {}
 
-		public Button   SelectButton;
-		public TMP_Text NameText;
+		public sealed class Factory : PlaceholderFactory<Settings, BuildingCategoryPanel> {}
+
+		[SerializeField] Button   SelectButton = null;
+		[SerializeField] TMP_Text NameText     = null;
 
 		void OnValidate() {
 			Assert.IsNotNull(SelectButton);

@@ -3,7 +3,7 @@ using CityManager.Utils.State;
 
 namespace CityManager.Unit {
 	[Serializable]
-	public class UnitData {
+	public sealed class UnitData {
 		public int          Id;
 		public int          HouseId;
 		public int          WorkPlaceId;

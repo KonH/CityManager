@@ -1,21 +1,23 @@
+using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 using CityManager.Utils;
 
 namespace CityManager.Building {
-	public class Producer : MonoBehaviour {
-		public BuildingSetup Setup;
-		public string        Resource;
-		public float         ProduceTime;
+	public sealed class Producer : MonoBehaviour {
+		[NonSerialized]
+		public BuildingSetup Owner;
+
+		public string Resource;
+		public float  ProduceTime;
 
 		void OnValidate() {
-			Assert.IsNotNull(Setup);
 			AssertExt.IsNotNullOrWhiteSpace(Resource);
 			Assert.IsTrue(ProduceTime > 0);
 		}
 
 		public bool TryConsume() {
-			var consumer = Setup.Consumer;
+			var consumer = Owner.Consumer;
 			if ( !consumer ) {
 				return true;
 			}
@@ -23,7 +25,7 @@ namespace CityManager.Building {
 		}
 
 		public void Produce() {
-			var storage = Setup.Storage;
+			var storage = Owner.Storage;
 			if ( !storage ) {
 				return;
 			}

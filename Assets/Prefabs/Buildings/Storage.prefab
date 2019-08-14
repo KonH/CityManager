@@ -162,7 +162,6 @@ MonoBehaviour:
   Producer: {fileID: 0}
   Consumer: {fileID: 3132412984313372991}
   Storage: {fileID: 6036234246511817036}
-  WorkPlace: {fileID: 0}
 --- !u!114 &3159122994031638982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +188,8 @@ MonoBehaviour:
       Z: 0
       W: 0
     Units: 
-  Setup: {fileID: 1011200119650862874}
+  CategoryName: Economy
+  BuildingName: Storage
 --- !u!1 &1011200120173933520
 GameObject:
   m_ObjectHideFlags: 0

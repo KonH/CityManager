@@ -5,11 +5,11 @@ using UnityEngine.Assertions;
 using Zenject;
 
 namespace CityManager.Unit {
-	public class UnitSetup : MonoBehaviour {
-		public class Factory : PlaceholderFactory<UnitSetup> {}
+	public sealed class UnitSetup : MonoBehaviour {
+		public sealed class Factory : PlaceholderFactory<UnitSetup> {}
 
 		[Serializable]
-		public class InventoryPart {
+		public sealed class InventoryPart {
 			public string     Name;
 			public GameObject Render;
 		}
@@ -25,6 +25,11 @@ namespace CityManager.Unit {
 			Assert.IsNotNull(StateMachine);
 			Assert.IsNotNull(Movement);
 			Assert.IsNotNull(Render);
+		}
+
+		void Awake() {
+			State.Owner = this;
+			StateMachine.Owner = this;
 		}
 
 		public void SetVisible(bool state) {

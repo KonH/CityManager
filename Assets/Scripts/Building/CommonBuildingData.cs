@@ -1,5 +1,5 @@
 namespace CityManager.Building {
-	public class CommonBuildingData {
+	public sealed class CommonBuildingData {
 		public int MaxBuildingId;
 	}
 }

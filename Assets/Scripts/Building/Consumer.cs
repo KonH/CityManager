@@ -1,19 +1,21 @@
+using System;
 using UnityEngine.Assertions;
 using JetBrains.Annotations;
 using CityManager.Utils;
 
 namespace CityManager.Building {
-	public class Consumer : InstancesHolder<Consumer> {
-		public BuildingSetup Setup;
-		public string[]      Resources;
+	public sealed class Consumer : InstancesHolder<Consumer> {
+		[NonSerialized]
+		public BuildingSetup Owner;
+
+		public string[] Resources;
 
 		void OnValidate() {
-			Assert.IsNotNull(Setup);
 			AssertExt.IsNotEmpty(Resources);
 		}
 
 		public bool TryConsume() {
-			var storage = Setup.Storage;
+			var storage = Owner.Storage;
 			if ( !storage ) {
 				return true;
 			}
@@ -45,7 +47,7 @@ namespace CityManager.Building {
 				if ( !isFound ) {
 					continue;
 				}
-				if ( instance.Setup.Storage.HasFreeSpace ) {
+				if ( instance.Owner.Storage.HasFreeSpace ) {
 					return instance;
 				}
 			}

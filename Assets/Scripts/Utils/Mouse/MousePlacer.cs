@@ -2,14 +2,14 @@
 using UnityEngine.Events;
 
 namespace CityManager.Utils.Mouse {
-	public class MousePlacer : MonoBehaviour {
+	public sealed class MousePlacer : MonoBehaviour {
 		[Header("Settings")]
-		public bool   SnapToGrid;
-		public string RaycastLayer;
+		[SerializeField] bool   SnapToGrid   = false;
+		[SerializeField] string RaycastLayer = null;
 
 		[Header("Callbacks")]
-		public UnityEvent OnConfirm;
-		public UnityEvent OnCancel;
+		[SerializeField] UnityEvent OnConfirm = null;
+		[SerializeField] UnityEvent OnCancel  = null;
 
 		Camera       _camera    = null;
 		Transform    _target    = null;

@@ -4,7 +4,7 @@ using CityManager.Building;
 using CityManager.Unit.States;
 
 namespace CityManager.Unit {
-	public class UnitSpawner : MonoBehaviour {
+	public sealed class UnitSpawner : MonoBehaviour {
 		BuildingManager _buildingManager;
 		UnitManager     _unitManager;
 

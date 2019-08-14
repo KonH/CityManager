@@ -4,7 +4,7 @@ using UnityEngine.AI;
 using UnityEngine.Assertions;
 
 namespace CityManager.Unit {
-	public class Movement : MonoBehaviour {
+	public sealed class Movement : MonoBehaviour {
 		public NavMeshAgent Agent;
 
 		Action _callback;

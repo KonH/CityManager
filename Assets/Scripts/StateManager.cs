@@ -7,7 +7,7 @@ using CityManager.Building;
 using CityManager.Utils.State;
 
 namespace CityManager {
-	public class StateManager {
+	public sealed class StateManager {
 		string SavePath {
 			get { return Path.Combine(Application.persistentDataPath, "save.json"); }
 		}

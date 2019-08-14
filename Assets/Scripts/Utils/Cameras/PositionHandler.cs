@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
 namespace CityManager.Utils.Cameras {
-	public class PositionHandler : MonoBehaviour {
-		public float Speed;
+	public sealed class PositionHandler : MonoBehaviour {
+		[SerializeField] float Speed = 0.0f;
 
 		void LateUpdate() {
 			var z = Input.GetAxis("Vertical");

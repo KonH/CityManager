@@ -1,21 +1,18 @@
-using UnityEngine.Assertions;
+using System;
 using JetBrains.Annotations;
 using CityManager.Utils.State;
 
 namespace CityManager.Unit {
-	public class UnitState : StateHolder<UnitState, UnitData> {
-		public UnitSetup Setup;
-
-		void OnValidate() {
-			Assert.IsNotNull(Setup);
-		}
+	public sealed class UnitState : StateHolder<UnitState, UnitData> {
+		[NonSerialized]
+		public UnitSetup Owner;
 
 		public override void Refresh() {
 			var trans = transform;
 			Data.Position = new Vec3Data(trans.position);
 			Data.Rotation = new RotationData(trans.rotation);
 
-			var curState = Setup.StateMachine.CurrentState;
+			var curState = Owner.StateMachine.CurrentState;
 			Data.CurrentState  = curState.GetType().FullName;
 			Data.StateProgress = curState.Progress;
 		}
@@ -26,7 +23,7 @@ namespace CityManager.Unit {
 			trans.position = instance.Position.ToVector3();
 			trans.rotation = instance.Rotation.ToQuaternion();
 
-			Setup.StateMachine.StartState(instance.CurrentState, instance.StateProgress);
+			Owner.StateMachine.StartState(instance.CurrentState, instance.StateProgress);
 		}
 
 		[CanBeNull]
@@ -35,7 +32,7 @@ namespace CityManager.Unit {
 				if ( instance.Data.WorkPlaceId > 0 ) {
 					continue;
 				}
-				return instance.Self.Setup;
+				return instance.Self.Owner;
 			}
 			return null;
 		}

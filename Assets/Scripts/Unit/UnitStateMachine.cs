@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace CityManager.Unit {
-	public class UnitStateMachine : MonoBehaviour {
+	public sealed class UnitStateMachine : MonoBehaviour {
 		public abstract class State {
 			public UnitSetup        Setup;
 			public UnitStateMachine Owner;
@@ -14,13 +14,10 @@ namespace CityManager.Unit {
 			public virtual void Exit() {}
 		}
 
-		public UnitSetup Setup;
+		[NonSerialized]
+		public UnitSetup Owner;
 
 		public State CurrentState { get; private set; }
-
-		void OnValidate() {
-			Assert.IsNotNull(Setup);
-		}
 
 		public void StartState(string stateName, float progress) {
 			var type = Type.GetType(stateName);
@@ -37,7 +34,7 @@ namespace CityManager.Unit {
 		void EnterState(State newState, float progress) {
 			CurrentState = newState;
 			CurrentState.Owner = this;
-			CurrentState.Setup = Setup;
+			CurrentState.Setup = Owner;
 			CurrentState.Progress = progress;
 			CurrentState.Enter();
 		}

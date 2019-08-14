@@ -4,7 +4,7 @@ using CityManager.Utils.State;
 
 namespace CityManager.Building {
 	[Serializable]
-	public class BuildingData {
+	public sealed class BuildingData {
 		public string                  Category;
 		public string                  Name;
 		public int                     Id;

@@ -4,11 +4,11 @@ using UnityEngine.Assertions;
 using Zenject;
 
 namespace CityManager.UI {
-	public class DeleteStateButton : MonoBehaviour {
-		public Button Button;
+	public sealed class DeleteStateButton : MonoBehaviour {
+		[SerializeField] Button Button = null;
 
 		StateManager _manager;
-		
+
 		void OnValidate() {
 			Assert.IsNotNull(Button);
 		}

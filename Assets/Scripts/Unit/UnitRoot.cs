@@ -1,5 +1,5 @@
 ﻿using CityManager.Utils;
 
 namespace CityManager.Unit {
-	public class UnitRoot : Singleton<UnitRoot> {}
+	public sealed class UnitRoot : Singleton<UnitRoot> {}
 }

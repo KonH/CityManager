@@ -5,9 +5,9 @@ using Zenject;
 using CityManager.Installer;
 
 namespace CityManager.UI {
-	public class BuildingCategoryPanelInitializer : MonoBehaviour {
-		public BuildingPanelInitializer BuildingPanelInitializer;
-		
+	public sealed class BuildingCategoryPanelInitializer : MonoBehaviour {
+		[SerializeField] BuildingPanelInitializer BuildingPanelInitializer = null;
+
 		string[]                      _categories;
 		BuildingCategoryPanel.Factory _factory;
 

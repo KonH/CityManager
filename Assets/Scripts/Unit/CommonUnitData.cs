@@ -1,5 +1,5 @@
 namespace CityManager.Unit {
-	public class CommonUnitData {
+	public sealed class CommonUnitData {
 		public int MaxUnitId;
 	}
 }

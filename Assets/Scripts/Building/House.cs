@@ -3,7 +3,7 @@ using CityManager.Unit;
 using CityManager.Utils;
 
 namespace CityManager.Building {
-	public class House : InstancesHolder<House> {
+	public sealed class House : InstancesHolder<House> {
 		public BuildingSetup Setup;
 		public int           Capacity;
 

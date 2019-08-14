@@ -2,15 +2,15 @@ using UnityEngine.Assertions;
 using CityManager.Building;
 
 namespace CityManager.Unit.States {
-	public class WorkReadyState : UnitStateMachine.State {
+	public sealed class WorkReadyState : UnitStateMachine.State {
 		Storage  _storage;
 		Producer _producer;
-		
+
 		public override void Enter() {
 			Setup.SetVisible(false);
 			var state = BuildingState.FindStateById(Setup.State.Data.WorkPlaceId);
 			Assert.IsNotNull(state);
-			var setup = state.Setup;
+			var setup = state.Owner;
 			_storage  = setup.Storage;
 			_producer = setup.Producer;
 		}

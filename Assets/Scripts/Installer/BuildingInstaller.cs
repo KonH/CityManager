@@ -7,15 +7,15 @@ using CityManager.Building;
 
 namespace CityManager.Installer {
 	[CreateAssetMenu(fileName = "BuildingInstaller", menuName = "Installers/BuildingInstaller")]
-	public class BuildingInstaller : ScriptableObjectInstaller<BuildingInstaller> {
-		public class BuildingSet {
+	public sealed class BuildingInstaller : ScriptableObjectInstaller<BuildingInstaller> {
+		public sealed class BuildingSet {
 			public Dictionary<string, List<BuildingSetup>> Categories    = new Dictionary<string, List<BuildingSetup>>();
 			public string[]                                CategoryNames = null;
 		}
 
-		public BuildingSetup[]       Buildings;
-		public BuildingCategoryPanel BuildingCategoryPanelPrefab;
-		public BuildingPanel         BuildingPanelPrefab;
+		[SerializeField] BuildingSetup[]       Buildings                   = null;
+		[SerializeField] BuildingCategoryPanel BuildingCategoryPanelPrefab = null;
+		[SerializeField] BuildingPanel         BuildingPanelPrefab         = null;
 
 		public override void InstallBindings() {
 			Container.BindInstance(CreateBuildingSet());
@@ -27,7 +27,7 @@ namespace CityManager.Installer {
 		BuildingSet CreateBuildingSet() {
 			var set = new BuildingSet();
 			foreach ( var setup in Buildings ) {
-				var categoryName = setup.CategoryName;
+				var categoryName = setup.State.CategoryName;
 				if ( !set.Categories.TryGetValue(categoryName, out var setups) ) {
 					setups = new List<BuildingSetup>();
 					set.Categories.Add(categoryName, setups);

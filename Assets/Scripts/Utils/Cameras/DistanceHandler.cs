@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
 namespace CityManager.Utils.Cameras {
-	public class DistanceHandler : MonoBehaviour {
-		public float Speed;
+	public sealed class DistanceHandler : MonoBehaviour {
+		[SerializeField] float Speed = 0.0f;
 
 		void LateUpdate() {
 			var axis = Input.GetAxis("Mouse ScrollWheel");

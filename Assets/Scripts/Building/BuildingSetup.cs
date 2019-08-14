@@ -1,11 +1,8 @@
 ﻿using UnityEngine;
-using CityManager.Utils;
 using UnityEngine.Assertions;
 
 namespace CityManager.Building {
-	public class BuildingSetup : MonoBehaviour {
-		public string              CategoryName;
-		public string              BuildingName;
+	public sealed class BuildingSetup : MonoBehaviour {
 		public BuildingPlaceholder Placeholder;
 		public GameObject          Body;
 		public Transform           EntryPoint;
@@ -15,11 +12,22 @@ namespace CityManager.Building {
 		public Storage             Storage;
 
 		void OnValidate() {
-			AssertExt.IsNotNullOrWhiteSpace(CategoryName);
-			AssertExt.IsNotNullOrWhiteSpace(BuildingName);
 			Assert.IsNotNull(Placeholder);
 			Assert.IsNotNull(Body);
 			Assert.IsNotNull(State);
+		}
+
+		void Awake() {
+			State.Owner = this;
+			if ( Producer ) {
+				Producer.Owner = this;
+			}
+			if ( Consumer ) {
+				Consumer.Owner = this;
+			}
+			if ( Storage ) {
+				Storage.Owner = this;
+			}
 		}
 	}
 }

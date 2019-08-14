@@ -1,18 +1,24 @@
-﻿using UnityEngine.Assertions;
+﻿using System;
+using CityManager.Utils;
 using JetBrains.Annotations;
 using CityManager.Utils.State;
 
 namespace CityManager.Building {
-	public class BuildingState : StateHolder<BuildingState, BuildingData> {
-		public BuildingSetup Setup;
+	public sealed class BuildingState : StateHolder<BuildingState, BuildingData> {
+		public string CategoryName;
+		public string BuildingName;
+
+		[NonSerialized]
+		public BuildingSetup Owner;
 
 		void OnValidate() {
-			Assert.IsNotNull(Setup);
+			AssertExt.IsNotNullOrWhiteSpace(CategoryName);
+			AssertExt.IsNotNullOrWhiteSpace(BuildingName);
 		}
 
 		public override void Refresh() {
-			Data.Category = Setup.CategoryName;
-			Data.Name     = Setup.BuildingName;
+			Data.Category = CategoryName;
+			Data.Name     = BuildingName;
 
 			var trans = transform;
 			Data.Position = new Vec3Data(trans.position);
