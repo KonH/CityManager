@@ -1,10 +1,8 @@
 Library
 Temp
 Logs
-Assets/Plugins/Editor/JetBrains
 .idea
 *.sln
 *.csproj
 obj
 .DS_Store
-Assets/Plugins/Editor/JetBrains.meta
